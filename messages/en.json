@@ -1,0 +1,40 @@
+{
+  "AboutPage": {
+    "title": "Who Are We",
+    "prev": "At Linki, we strive to simplify access to medical equipment and supplies. Our platform connects certified suppliers with healthcare facilities to provide a fast, secure, and transparent purchasing experience across the Gulf region.",
+    "btn": "Shop Now",
+    "head1": "Our goal is to empower the healthcare sector through smart and reliable supply.",
+    "head2": "Our goal is to empower the healthcare sector through smart and reliable supply.",
+    "head3": "Linki Marketplace was launched with a clear vision to transform the process of sourcing medical equipment into a seamless and efficient digital experience.",
+    "head4": "We connect trusted medical suppliers with hospitals, centers, and clinics to simplify purchasing and deliver smart solutions that enhance the quality of healthcare services across the region.",
+    "head5": "Our Mission",
+    "head6": "Providing a reliable, technology-driven platform that simplifies the purchasing and supply of medical equipment while ensuring efficiency and transparency at every step.",
+    "head7": "Our Vision",
+    "head8": "To be the leading digital marketplace for medical equipment in the Gulf, setting new standards in efficiency, reliability, and user experience.",
+    "head9": "What We Offer",
+    "head10": "A wide range of medical equipment — from diagnostic devices to surgical tools — all sourced from certified and trusted suppliers.",
+    "head11": "Maintenance and calibration services to ensure device accuracy and operational efficiency according to the highest standards.",
+    "head12": "Flexible payment and shipping options, including multiple payment methods, easy installment plans, and fast delivery across Saudi Arabia and the Gulf.",
+    "head13": "Trusted suppliers and secure transactions — every purchase is handled with full transparency and reliability.",
+    "head14": "Our Team",
+    "head15": "The Linki team brings together top professionals from the fields of technology and healthcare, working hand in hand to redefine the medical supply experience — making it smarter, faster, and more reliable.",
+    "head16": "Dr/ Mohamed El-Faraby",
+    "head17": "CTO",
+    "head18": "Eng./ Omar Eissa",
+    "head19": "Eng./ Mohamed Alaa",
+    "head20": "Technical Lead",
+    "head21": "Mr./ Hossam Farouk",
+    "head22": "Sales Manager"
+  },
+  "header": {
+    "Home": "Main Categories",
+    "About": "About Us",
+    "Services": "Services",
+    "Products": "Products",
+    "Offers": "Offers",
+    "Blogs": "Blogs",
+    "Contact": "Contact Us",
+    "register": "Register",
+    "signin": "Signin"
+  }
+}

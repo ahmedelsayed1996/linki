@@ -1,5 +1,6 @@
 "use client"
 import useCurrentLang from '@/app/_hooks/useCurrentLang';
+import { ChevronDown, Microscope, Wrench, Eye, Cog, Info, Tag, BadgeDollarSign, Newspaper, Phone } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image'
 import Link from 'next/link';
@@ -7,12 +8,12 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react'
 const NAV_LINKS = [
   { key: "Home", href: "" },
-  { key: "Services", href: "services" },
-  { key: "About", href: "about-us" },
-  { key: "Products", href: "products" },
-  { key: "Offers", href: "offers" },
-  { key: "Blogs", href: "blogs" },
-  { key: "Contact", href: "contact-us" }
+  { key: "Services", href: "services", icon: <Cog size={20}/> },
+  { key: "About", href: "about-us", icon: <Info size={20}/> },
+  { key: "Products", href: "products", icon: <Tag size={20}/> },
+  { key: "Offers", href: "offers", icon: <BadgeDollarSign size={20}/> },
+  { key: "Blogs", href: "blogs", icon: <Newspaper size={20}/> },
+  { key: "Contact", href: "contact-us", icon: <Phone size={20}/> }
 ];
 const DEPARTMENTS_LINKS = [
   { name: "Diagnostics", href: "category/Diagnostics" },
@@ -20,9 +21,141 @@ const DEPARTMENTS_LINKS = [
   { name: "Secondary care", href: "category/SecondaryCare" },
 ];
 const SERVICES_LINKS = [
-  { name: "HomeCare", href: "services/home-care" },
-  { name: "Diagnostic", href: "services/diagnostic-center" }
+  { name: "Laboratory Equipment Services & Calibration", href: "services/home-care", icon: <Microscope /> },
+  { name: "Medical Device Maintenance & Calibration", href: "services/diagnostic-center", icon: <Wrench /> },
+  { name: "Ophthalmology Equipment Services", href: "services/diagnostic-center", icon: <Eye /> }
 ];
+
+type Item = {
+  title: string
+  content?: string[]
+}
+
+const dataLeft: Item[] = [
+  {
+    title: "PRIMARY CARE",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "SECONDARY CARE",
+    content: [
+      "Neurology",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "Ophthalmology",
+      "Otorhinolaryngology",
+      "Cardiology",
+      "Pneumology",
+      "Gastroenterology",
+      "Urology",
+      "Gyneco-obstetrics",
+      "Dermatology",
+      "Podiatry",
+      "Oncology",
+      "Orthopedic surgery",
+    ],
+  },
+  {
+    title: "SURGERY UNIT",
+    content: [
+      "Operating room",
+      "Surgical Instruments",
+      "Anesthesia",
+    ],
+  },
+  {
+    title: "DENTAL",
+    content: [
+      "DENTAL PRACTICE",
+      "DENTAL INSTRUMENTS",
+      "DENTAL LABORATORY",
+    ],
+  },
+  {
+    title: "REHABILITATION",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "AESTHETIC MEDICINE, WELLNESS",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "VETERINARY MEDICINE",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "MEDICAL TECHNICAL FACILITIES",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "MEDICAL IMAGING",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "LABORATORY",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "HYGIENE",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "MEDICAL & PHARMACEUTICAL INDUSTRY",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "FURNITURE, LOGISTICS",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+  {
+    title: "MEDICAL CONSUMABLES",
+    content: [
+      "GENERAL PRACTICE",
+      "EMERGENCY MEDICINE, RESUSCITATION",
+      "PEDIATRICS",
+    ],
+  },
+]
+
 const navLinkBase =
   "relative px-4 py-2 text-base rounded-[50px] transition-all duration-300 " +
   "after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-1 " +
@@ -38,6 +171,7 @@ function Header() {
   const burgerRef = useRef<HTMLDivElement>(null);
   const megaRef = useRef<HTMLDivElement>(null);
   const serviceMegaRef = useRef<HTMLDivElement>(null);
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const pathname = usePathname();
   const language = useCurrentLang();
@@ -46,6 +180,9 @@ function Header() {
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [showMegaMenuService, setShowMegaMenuService] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openIndex, setOpenIndex] = useState<number | null>()
+
+  console.log(process.env.NEXT_PUBLIC_SERVER_URL);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -91,7 +228,7 @@ function Header() {
         </div>
         <div ref={burgerRef} className={`
             ${mobileOpen ? "flex" : "hidden"} lg:flex flex-col lg:flex-row gap-2 w-[80%] lg:w-auto mx-auto  bg-white lg:bg-transparent absolute lg:static top-full p-4 lg:p-0 shadow-lg lg:shadow-none rounded-2xl lg:rounded-none `}>
-          {NAV_LINKS.map(({ key, href }) => {
+          {NAV_LINKS.map(({ key, href, icon }) => {
             const fullPath = href === "" ? `/${language}` : `/${language}/${href}`;
             const active =
               href === ""
@@ -103,12 +240,7 @@ function Header() {
                 <div key={key} className="relative" ref={megaRef}>
                   <button
                     onClick={() => setShowMegaMenu((prev) => !prev)}
-                    //   className={`px-4 py-2 text-base rounded-[50px] flex gap-1 items-center transition-all
-                    //  ${active
-                    //       ? "font-bold text-[#31487A] bg-secondColor"
-                    //       : "text-[#31487A] hover:bg-secondColor hover:text-[#31487A]"
-                    //     }`}
-                    className={`${navLinkBase} flex gap-1 items-center ${active ? navLinkActive : navLinkDefault}`}
+                    className={`${navLinkBase} flex gap-1 items-center ${active ? navLinkActive : navLinkDefault} cursor-pointer`}
                   >
                     {t(`${key}`)}
                     <svg className={`transition-transform duration-500 ease-in-out ${showMegaMenu ? "rotate-180" : ""
@@ -119,8 +251,8 @@ function Header() {
                   </button>
 
                   {showMegaMenu && (
-                    <div className=" absolute lg:absolute mt-4  w-full lg:w-[800px] bg-white shadow-xl rounded-2xl p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 z-20">
-                      {DEPARTMENTS_LINKS.map((dept) => (
+                    <div className=" absolute lg:absolute mt-4  w-full lg:w-225 bg-[#ffffffe6] shadow-xl rounded-2xl p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 z-20 items-start h-auto">
+                      {/* {DEPARTMENTS_LINKS.map((dept) => (
                         <Link
                           key={dept.name}
                           href={`/${language}/${dept.href}`}
@@ -128,10 +260,49 @@ function Header() {
                             setShowMegaMenu(false);
                             setMobileOpen(!mobileOpen);
                           }}
-                          className="text-secondColor hover:text-white hover:bg-secondColor px-4 py-2 rounded-lg transition"
+                          className="text-secondColor hover:text-white hover:bg-[#31487A] px-4 py-2 rounded-lg transition-all duration-300"
                         >
                           {dept.name}
                         </Link>
+                      ))} */}
+
+                      {dataLeft.map((item, i) => (
+                        <div key={i} className="border bg-gray--50 mx-4">
+                          {/* header */}
+                          <div
+                            onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                            className="flex items-center justify-between px-4 py-4 cursor-pointer"
+                          >
+                            <div className="flex items-center gap-3">
+                              <div className="w-[3px] h-6 bg-sky-400" />
+                              <span className={`text-sm font-medium ${openIndex === i ? "text-sky-400" : "text-gray-700"}  hover:text-sky-400`}>
+                                {item.title}
+                              </span>
+                            </div>
+
+                            <ChevronDown
+                              className={`transition ${openIndex === i ? "rotate-180" : ""
+                                }`}
+                            />
+                          </div>
+
+                          {/* content */}
+                          <div
+                            style={{
+                              height: openIndex === i ? `${contentRefs.current[i]?.scrollHeight}px` : "0px",
+                            }}
+                            className="overflow-hidden transition-all duration-300 ease-in-out"
+                            ref={(el: any) => (contentRefs.current[i] = el)}
+                          >
+                            {item.content && (
+                              <div className="px-10 pb-4 text-sm text-gray-500 space-y-1">
+                                {item.content.map((c, idx) => (
+                                  <div key={idx} className='hover:ps-2.5 transition-all duration-300 cursor-pointer'>{c}</div>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       ))}
                     </div>
                   )}
@@ -143,13 +314,8 @@ function Header() {
                 <div key={key} className="relative" ref={serviceMegaRef}>
                   <button
                     onClick={() => setShowMegaMenuService((prev) => !prev)}
-                    //   className={`px-4 py-2 text-base rounded-[50px] flex gap-1 items-center transition-all
-                    //  ${active
-                    //       ? "font-bold text-[#31487A] bg-secondColor"
-                    //       : "text-[#31487A] hover:bg-secondColor hover:text-[#31487A]"
-                    //     }`}
                     className={`${navLinkBase} flex gap-1 items-center ${active ? navLinkActive : navLinkDefault}`}
-                  >
+                  >{icon}
                     {t(`${key}`)}
                     <svg className={`transition-transform duration-500 ease-in-out ${showMegaMenuService ? "rotate-180" : ""
                       }`} width="9" height="6" viewBox="0 0 9 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -159,7 +325,7 @@ function Header() {
                   </button>
 
                   {showMegaMenuService && (
-                    <div className=" absolute lg:absolute mt-4 w-full lg:w-[400px] bg-white shadow-xl rounded-2xl p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 z-20">
+                    <div className="group absolute lg:absolute mt-4 w-full lg:w-150 bg-white shadow-xl rounded-2xl p-4  z-20">
                       {SERVICES_LINKS.map((service) => (
                         <Link
                           key={service.name}
@@ -168,8 +334,9 @@ function Header() {
                             setMobileOpen(!mobileOpen);
                             setShowMegaMenuService(false);
                           }}
-                          className="text-secondColor hover:text-white hover:bg-secondColor px-4 py-2 rounded-lg transition"
+                          className="text-secondColor text-[#31487A] hover:text-white hover:bg-[#31487A] px-4 py-2 rounded-lg transition flex items-center gap-1"
                         >
+                          <span>{service?.icon} </span>
                           {service.name}
                         </Link>
                       ))}
@@ -188,14 +355,16 @@ function Header() {
                 //     ? "font-bold text-[#31487A] bg-secondColor"
                 //     : "text-[#31487A] hover:bg-secondColor hover:text-[#31487A]"
                 //   }`}
-                className={`${navLinkBase} ${active ? navLinkActive : navLinkDefault}`}
+                className={`${navLinkBase} ${active ? navLinkActive : navLinkDefault} flex items-center gap-1`}
                 onClick={() => setMobileOpen(!mobileOpen)}
               >
-                {key === "Contact" ? <div className='flex items-center gap-1'>
+                {/* {key === "Contact" ? <div className='flex items-center gap-1'>
                   <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M16.1816 11.429L12.1772 9.63467L12.1661 9.62957C11.9583 9.54066 11.7315 9.50497 11.5063 9.52575C11.2812 9.54653 11.0648 9.62311 10.8767 9.74857C10.8545 9.7632 10.8333 9.77909 10.8129 9.79617L8.74402 11.5599C7.43331 10.9233 6.0801 9.58027 5.44345 8.28656L7.20976 6.18619C7.22676 6.16494 7.24291 6.14369 7.25821 6.12074C7.38097 5.93314 7.45546 5.71811 7.47503 5.49477C7.49461 5.27143 7.45867 5.04672 7.37041 4.84062V4.83042L5.57095 0.819236C5.45428 0.550008 5.25366 0.325734 4.99905 0.179892C4.74444 0.0340509 4.44949 -0.0255355 4.15824 0.0100281C3.00645 0.16159 1.94922 0.727238 1.18401 1.60132C0.418795 2.47541 -0.00207481 3.59816 7.6914e-06 4.75987C7.6914e-06 11.5089 5.49105 17 12.2401 17C13.4018 17.0021 14.5246 16.5812 15.3986 15.816C16.2727 15.0508 16.8384 13.9935 16.9899 12.8418C17.0256 12.5506 16.9661 12.2557 16.8204 12.0011C16.6747 11.7465 16.4506 11.5458 16.1816 11.429ZM12.2401 15.64C9.35549 15.6368 6.58992 14.4895 4.5502 12.4498C2.51047 10.4101 1.36317 7.64449 1.36002 4.75987C1.35682 3.92983 1.65586 3.127 2.2013 2.50132C2.74674 1.87564 3.50127 1.46989 4.32399 1.35984C4.32365 1.36323 4.32365 1.36665 4.32399 1.37004L6.109 5.36508L4.35204 7.468C4.33421 7.48852 4.31801 7.5104 4.30359 7.53345C4.17567 7.72973 4.10064 7.95573 4.08574 8.18954C4.07085 8.42335 4.11661 8.65704 4.21859 8.86796C4.98869 10.443 6.57565 12.0181 8.16772 12.7874C8.38019 12.8884 8.61523 12.9326 8.84988 12.9156C9.08453 12.8986 9.31077 12.821 9.50648 12.6905C9.5283 12.6757 9.5493 12.6599 9.56938 12.6428L11.6357 10.8799L15.6308 12.6692C15.6308 12.6692 15.6376 12.6692 15.6401 12.6692C15.5314 13.4931 15.1263 14.2491 14.5005 14.7959C13.8747 15.3427 13.0711 15.6428 12.2401 15.64Z" fill="#31487A" />
                   </svg> {t(`${key}`)}
-                </div> : t(`${key}`)}
+                </div> : t(`${key}`)} */}
+                {icon}
+                {t(`${key}`)}
 
               </Link>
             );

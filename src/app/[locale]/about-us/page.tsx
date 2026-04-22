@@ -53,7 +53,7 @@ function AboutUsPage() {
                     <Image src="/images/vision.png" alt="Hero" width={150} height={100} className="object-cover rounded-lg transition-transform duration-300 group-hover:scale-110" />
                 </div>
             </div>
-            {/* What We Offer section */}
+            {/* What We Offer */}
             <div className='flex flex-col lg:flex-row gap-5 p-5 lg:p-16 group'>
                 <div className='lg:w-1/2 overflow-hidden'>
                     <Image src="/images/about.png" alt="Hero" width={600} height={500} className='object-cover rounded-xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-1' />
@@ -111,33 +111,10 @@ function AboutUsPage() {
                     </div> */}
                 </div>
             </div>
-            {/* Our Team */}
+            {/* Slider Our Team */}
             <div className='bg-[#F1F8FE] p-5 lg:p-16'>
                 <h2 className='text-2xl lg:text-4xl font-semibold text-center text-[#31487A]'>{t("head14")}</h2>
                 <p className='text-[#31487A] text-center mt-6 text-sm lg:text-lg px-6 lg:px-64'>{t("head15")}</p>
-
-                {/* <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 mt-10'>
-                    <div className='bg-white rounded-lg flex flex-col justify-center items-center '>
-                        <Image src="/images/avatar.jpeg" alt="Hero" width={200} height={100} objectFit=" object-cover rounded-lg" />
-                        <h3 className='text-[#31487A] font-medium text-xl'>{t("head16")} </h3>
-                        <p>{t("head17")}</p>
-                    </div>
-                    <div className='bg-white rounded-lg flex flex-col justify-center items-center '>
-                        <Image src="/images/avatar.jpeg" alt="Hero" width={200} height={100} objectFit=" object-cover rounded-lg" />
-                        <h3 className='text-[#31487A] font-medium text-xl'>{t("head18")} </h3>
-                        <p>{t("head17")}</p>
-                    </div>
-                    <div className='bg-white rounded-lg flex flex-col justify-center items-center '>
-                        <Image src="/images/avatar.jpeg" alt="Hero" width={200} height={100} objectFit=" object-cover rounded-lg" />
-                        <h3 className='text-[#31487A] font-medium text-xl'>{t("head19")} </h3>
-                        <p>{t("head20")}</p>
-                    </div>
-                    <div className='bg-white rounded-lg flex flex-col justify-center items-center '>
-                        <Image src="/images/avatar.jpeg" alt="Hero" width={200} height={100} objectFit=" object-cover rounded-lg" />
-                        <h3 className='text-[#31487A] font-medium text-xl'>{t("head21")}</h3>
-                        <p>{t("head22")}</p>
-                    </div>
-                </div> */}
                 <OurTeamSlider />
             </div>
         </>

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { getMessages, setRequestLocale } from 'next-intl/server';
 import Header from '../_components/layout/header/Header';
+import Footer from '../_components/layout/footer/Footer';
 
 type Props = {
     children: React.ReactNode;
@@ -20,8 +21,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     return (
         <div dir={locale === "ar" ? "rtl" : "ltr"}>
             <NextIntlClientProvider messages={messages}>
-                 <Header />
+                <Header />
                 {children}
+                <Footer />
             </NextIntlClientProvider>
         </div>
     )

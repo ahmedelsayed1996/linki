@@ -8,12 +8,12 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react'
 const NAV_LINKS = [
   { key: "Home", href: "" },
-  { key: "Services", href: "services", icon: <Cog size={20}/> },
-  { key: "About", href: "about-us", icon: <Info size={20}/> },
-  { key: "Products", href: "products", icon: <Tag size={20}/> },
-  { key: "Offers", href: "offers", icon: <BadgeDollarSign size={20}/> },
-  { key: "Blogs", href: "blogs", icon: <Newspaper size={20}/> },
-  { key: "Contact", href: "contact-us", icon: <Phone size={20}/> }
+  { key: "Services", href: "services", icon: <Cog size={20} /> },
+  { key: "About", href: "about-us", icon: <Info size={20} /> },
+  { key: "Products", href: "products", icon: <Tag size={20} /> },
+  { key: "Offers", href: "offers", icon: <BadgeDollarSign size={20} /> },
+  { key: "Blogs", href: "blogs", icon: <Newspaper size={20} /> },
+  { key: "Contact", href: "contact-us", icon: <Phone size={20} /> }
 ];
 const DEPARTMENTS_LINKS = [
   { name: "Diagnostics", href: "category/Diagnostics" },
@@ -29,6 +29,24 @@ const SERVICES_LINKS = [
 type Item = {
   title: string
   content?: string[]
+}
+type Category = {
+  count: number;
+  description: string;
+  id: number;
+  image_url: string;
+  name: string;
+  parent: number;
+  slug: string;
+  children: [{
+    count: number;
+    description: string;
+    id: number;
+    image_url: string;
+    name: string;
+    parent: number;
+    slug: string;
+  }]
 }
 
 const dataLeft: Item[] = [
@@ -157,14 +175,14 @@ const dataLeft: Item[] = [
 ]
 
 const navLinkBase =
-  "relative px-4 py-2 text-base rounded-[50px] transition-all duration-300 " +
+  "relative px-2 py-2 text-base rounded-[50px] transition-all duration-300 " +
   "after:content-[''] after:absolute after:left-1/2 after:-translate-x-1/2 after:bottom-1 " +
   "after:h-[2px] after:w-0 after:bg-[#31487A] after:transition-all after:duration-300";
 const navLinkDefault =
   "text-[#31487A] hover:bg-secondColor hover:text-[#31487A] " +
   "hover:after:w-[70%]";
 const navLinkActive =
-  "font-bold text-[#31487A] bg-secondColor after:w-[70%]";
+  "font-bold text-[#31487A] bg-secondColor after:w-[80%]";
 
 function Header() {
 
@@ -181,8 +199,34 @@ function Header() {
   const [showMegaMenuService, setShowMegaMenuService] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>()
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  console.log(process.env.NEXT_PUBLIC_SERVER_URL);
+  const getAllCategories = async () => {
+    try {
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/categories?hide_empty=false&orderby=count&order=DESC&limit=100&include_children=true&lang=${language}`,
+        {
+          method: "GET",
+          headers: {
+          },
+        }
+      );
+
+      if (!res.ok) {
+        const result = await res.json();
+        throw new Error(result.message);
+      }
+
+      const result = await res.json();
+      console.log(result?.data);
+      setCategories(result?.data);
+    } catch (error) {
+      console.error("Error:", error);
+
+    } finally {
+
+    }
+  }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -214,11 +258,14 @@ function Header() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+  useEffect(() => {
+    getAllCategories()
+  }, [])
 
   return (
-    <div className='flex justify-between py-4 px-16'>
+    <header className='flex justify-between py-4 px-5 lg:px-16'>
       <div><Image src="/linkiLogo.png" alt="Logo" width={100} height={50} className='object-contain' /></div>
-      <div className="flex  gap-8 items-center self-stretch my-auto min-w-10">
+      <nav className="flex  gap-8 items-center self-stretch my-auto min-w-10">
         <div className="lg:hidden">
           <button onClick={() => setMobileOpen(!mobileOpen)}>
             <svg width="24" height="24" fill="none" stroke="currentColor">
@@ -227,7 +274,7 @@ function Header() {
           </button>
         </div>
         <div ref={burgerRef} className={`
-            ${mobileOpen ? "flex" : "hidden"} lg:flex flex-col lg:flex-row gap-2 w-[80%] lg:w-auto mx-auto  bg-white lg:bg-transparent absolute lg:static top-full p-4 lg:p-0 shadow-lg lg:shadow-none rounded-2xl lg:rounded-none `}>
+            ${mobileOpen ? "flex " : "hidden"} lg:flex flex-col lg:flex-row gap-2 w-full lg:w-auto mx-auto  bg-white lg:bg-transparent absolute lg:static top-16 left-0 p-4 lg:p-0 shadow-lg lg:shadow-none rounded-2xl lg:rounded-none transition-all duration-500`}>
           {NAV_LINKS.map(({ key, href, icon }) => {
             const fullPath = href === "" ? `/${language}` : `/${language}/${href}`;
             const active =
@@ -266,7 +313,7 @@ function Header() {
                         </Link>
                       ))} */}
 
-                      {dataLeft.map((item, i) => (
+                      {categories.map((item, i) => (
                         <div key={i} className="border bg-gray--50 mx-4">
                           {/* header */}
                           <div
@@ -276,7 +323,7 @@ function Header() {
                             <div className="flex items-center gap-3">
                               <div className="w-[3px] h-6 bg-sky-400" />
                               <span className={`text-sm font-medium ${openIndex === i ? "text-sky-400" : "text-gray-700"}  hover:text-sky-400`}>
-                                {item.title}
+                                {item.name}
                               </span>
                             </div>
 
@@ -294,10 +341,10 @@ function Header() {
                             className="overflow-hidden transition-all duration-300 ease-in-out"
                             ref={(el: any) => (contentRefs.current[i] = el)}
                           >
-                            {item.content && (
+                            {item.children && (
                               <div className="px-10 pb-4 text-sm text-gray-500 space-y-1">
-                                {item.content.map((c, idx) => (
-                                  <div key={idx} className='hover:ps-2.5 transition-all duration-300 cursor-pointer'>{c}</div>
+                                {item.children.map((c, idx) => (
+                                  <div key={idx} className='hover:ps-2.5 transition-all duration-300 cursor-pointer'>{c?.name}</div>
                                 ))}
                               </div>
                             )}
@@ -334,7 +381,7 @@ function Header() {
                             setMobileOpen(!mobileOpen);
                             setShowMegaMenuService(false);
                           }}
-                          className="text-secondColor text-[#31487A] hover:text-white hover:bg-[#31487A] px-4 py-2 rounded-lg transition flex items-center gap-1"
+                          className="text-secondColor text-[#31487A] hover:text-white hover:bg-[#31487A] px-2 py-2 rounded-lg transition flex items-center gap-1"
                         >
                           <span>{service?.icon} </span>
                           {service.name}
@@ -369,8 +416,28 @@ function Header() {
               </Link>
             );
           })}
+          <div className='lg:hidden flex gap-3 justify-center items-center'>
+            <div className='flex gap-2 cursor-pointer border-2 border-[#FFFFFFFF] hover:border-[#31487A] rounded-lg transition-all duration-300 px-4 py-1 '>
+              <span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.0998 10.6458C10.0414 10.6375 9.96642 10.6375 9.89975 10.6458C8.43308 10.5958 7.26642 9.39583 7.26642 7.92083C7.26642 6.4125 8.48308 5.1875 9.99975 5.1875C11.5081 5.1875 12.7331 6.4125 12.7331 7.92083C12.7248 9.39583 11.5664 10.5958 10.0998 10.6458Z" stroke="#31487A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M15.6171 16.1469C14.1338 17.5052 12.1671 18.3302 10.0005 18.3302C7.83379 18.3302 5.86712 17.5052 4.38379 16.1469C4.46712 15.3635 4.96712 14.5969 5.85879 13.9969C8.14212 12.4802 11.8755 12.4802 14.1421 13.9969C15.0338 14.5969 15.5338 15.3635 15.6171 16.1469Z" stroke="#31487A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M9.99935 18.3385C14.6017 18.3385 18.3327 14.6076 18.3327 10.0052C18.3327 5.40284 14.6017 1.67188 9.99935 1.67188C5.39698 1.67188 1.66602 5.40284 1.66602 10.0052C1.66602 14.6076 5.39698 18.3385 9.99935 18.3385Z" stroke="#31487A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              </span>
+              <span>{t("register")}</span>
+            </div>
+            <div className='flex gap-2 bg-[#31487A] text-white hover:border-[#31487A] hover:bg-transparent hover:text-[#31487A] border-2 border-transparent px-4 py-1 rounded-lg items-center transition-all duration-300 cursor-pointer'>
+              <span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.41699 6.30312C7.67533 3.30312 9.21699 2.07812 12.592 2.07812H12.7003C16.4253 2.07812 17.917 3.56979 17.917 7.29479V12.7281C17.917 16.4531 16.4253 17.9448 12.7003 17.9448H12.592C9.24199 17.9448 7.70033 16.7365 7.42533 13.7865" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M1.66699 10H12.4003" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M10.542 7.20312L13.3337 9.99479L10.542 12.7865" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              </span>
+              <span className=''>{t("signin")}</span>
+            </div>
+          </div>
         </div>
-      </div>
+      </nav>
       <div className='flex gap-3'>
         <div className='flex justify-center items-center gap-2'>
           <div className='bg-[#F0F2F6] hover:bg-[#F0F2E1] cursor-pointer rounded-lg p-2'><svg width="19" height="17" viewBox="0 0 19 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -392,7 +459,7 @@ function Header() {
           </svg>
           </div>
         </div>
-        <div className='flex gap-3 justify-center items-center'>
+        <div className='hidden lg:flex gap-3 justify-center items-center'>
           <div className='flex gap-2 cursor-pointer border-2 border-[#FFFFFFFF] hover:border-[#31487A] rounded-lg transition-all duration-300 px-4 py-1 '>
             <span><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M10.0998 10.6458C10.0414 10.6375 9.96642 10.6375 9.89975 10.6458C8.43308 10.5958 7.26642 9.39583 7.26642 7.92083C7.26642 6.4125 8.48308 5.1875 9.99975 5.1875C11.5081 5.1875 12.7331 6.4125 12.7331 7.92083C12.7248 9.39583 11.5664 10.5958 10.0998 10.6458Z" stroke="#31487A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -413,7 +480,7 @@ function Header() {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   )
 }
 

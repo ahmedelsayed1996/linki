@@ -36,5 +36,33 @@
     "Contact": "Contact Us",
     "register": "Register",
     "signin": "Signin"
+  },
+  "footer": {
+    "prev": "Our company specializes in manufacturing high-quality laboratory devices and equipment, providing maintenance and calibration services to ensure device efficiency, in addition to specialized solutions in ophthalmology equipment to support the medical sector with the highest accuracy and reliability.",
+    "Links": "Quick Links",
+    "About": "About Us",
+    "Categories": "Main Categories",
+    "Services": "Our Services",
+    "Products": "All Products",
+    "Offers": "Latest Offers",
+    "Contact": "Contact Us",
+    "email": "Do you have any questions or suggestions?",
+    "phone": "Or contact us via the following numbers",
+    "payment": "Payment Methods",
+    "rights": "All rights reserved [Linki] © 2026",
+    "Privacy": "Privacy Policy",
+    "Terms": "Terms of Service",
+    "National": "National Address"
+  },
+  "services": {
+    "title": "Our Services",
+    "prev": "We offer a comprehensive range of services to support your needs in the medical equipment market from providing reliable products and maintenance & calibration services to flexible shipping and payment solutions, ensuring your company a smooth experience and successful partnership.",
+    "service1title": "Ophthalmic Equipment Services",
+    "service1prev": "We provide comprehensive solutions for the maintenance and inspection of ophthalmic devices, ensuring accurate measurements and reliable results.",
+    "service2title": "Medical Equipment Maintenance & Calibration",
+    "service2prev": "We provide comprehensive maintenance and calibration services for medical devices to ensure their accuracy and operational efficiency, with the highest global standards of safety and quality.",
+    "service3title": "Laboratory Equipment Services & Calibration",
+    "service3prev": "We offer specialized maintenance and calibration services for laboratory devices to ensure the accuracy of lab analyses and the quality of results.",
+    "Read": "Read more"
   }
 }

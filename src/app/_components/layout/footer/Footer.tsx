@@ -1,3 +1,5 @@
+"use client"
+import useCurrentLang from "@/app/_hooks/useCurrentLang";
 import { useTranslations } from "next-intl"
 import Image from "next/image"
 import Link from "next/link"
@@ -18,6 +20,7 @@ const iconStyle =
 
 function Footer() {
     const t = useTranslations('footer');
+    const language = useCurrentLang();
     return (
         <footer className="flex flex-col gap-10 justify-between py-4 px-5 lg:px-16 bg-[#F8F8F8]">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 ">
@@ -27,9 +30,9 @@ function Footer() {
                 <div >
                     <h6 className="font-bold text-lg">{t('Links')}</h6>
                     <div className="flex flex-col justify-between items-start gap-4 mt-5">
-                        <Link href={`#`} className={footerLink}>{t('About')} </Link>
+                        <Link href={`/${language}/about-us`} className={footerLink}>{t('About')} </Link>
                         <Link href={`#`} className={footerLink}>{t('Categories')} </Link>
-                        <Link href={`#`} className={footerLink}>{t('Services')}</Link>
+                        <Link href={`/${language}/services`} className={footerLink}>{t('Services')}</Link>
                         <Link href={`#`} className={footerLink}>{t('Products')}</Link>
                         <Link href={`#`} className={footerLink}>{t('Offers')}</Link>
                     </div>

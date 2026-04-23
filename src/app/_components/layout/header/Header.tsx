@@ -21,9 +21,9 @@ const DEPARTMENTS_LINKS = [
   { name: "Secondary care", href: "category/SecondaryCare" },
 ];
 const SERVICES_LINKS = [
-  { name: "Laboratory Equipment Services & Calibration", href: "services/home-care", icon: <Microscope /> },
-  { name: "Medical Device Maintenance & Calibration", href: "services/diagnostic-center", icon: <Wrench /> },
-  { name: "Ophthalmology Equipment Services", href: "services/diagnostic-center", icon: <Eye /> }
+  { name: "Laboratory Equipment Services & Calibration", href: "services/ophthalmic-equipment-services", icon: <Microscope /> },
+  { name: "Medical Device Maintenance & Calibration", href: "services/ophthalmic-equipment-services", icon: <Wrench /> },
+  { name: "Ophthalmology Equipment Services", href: "services/ophthalmic-equipment-services", icon: <Eye /> }
 ];
 
 type Item = {

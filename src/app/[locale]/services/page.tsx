@@ -63,8 +63,8 @@ function ServicesPage() {
                         <Link href={`/${language}/services/ophthalmic-equipment-services`} className=" px-4 py-2 rounded-full text-sm bg-blue-100 text-blue-600 
                              group-hover:bg-white group-hover:text-[#31487A] transition-all duration-300 flex items-center gap-2">
                             {t("Read")} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.68 6.75L22.75 12.82L16.68 18.89" stroke="#007CFE" stroke-width="2.124" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M4.125 12.75H20.625" stroke="#007CFE" stroke-width="2.124" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M16.68 6.75L22.75 12.82L16.68 18.89" stroke="#007CFE" strokeWidth="2.124" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M4.125 12.75H20.625" stroke="#007CFE" strokeWidth="2.124" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
 
                         </Link>
@@ -93,7 +93,7 @@ function ServicesPage() {
                         {/* Icon */}
                         <div className="mb-4 text-[#31487A] group-hover:text-white transition-all duration-300">
                             <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <g clip-path="url(#clip0_1304_14221)">
+                                <g clipPath="url(#clip0_1304_14221)">
                                     <path d="M76.3004 5.92969H3.70664C2.45019 5.92969 1.43164 6.94824 1.43164 8.20469V66.5984C1.43164 67.8549 2.45019 68.8734 3.70664 68.8734H76.3004C77.5568 68.8734 78.5754 67.8549 78.5754 66.5984V8.20469C78.5754 6.94824 77.5568 5.92969 76.3004 5.92969Z" fill="#31487A" />
                                     <path d="M76.3004 69.4984H3.70664C2.10664 69.4984 0.806641 68.1984 0.806641 66.5984V8.20469C0.806641 6.60469 2.10664 5.30469 3.70664 5.30469H76.3004C77.9004 5.30469 79.2004 6.60469 79.2004 8.20469V66.5984C79.2004 68.1984 77.9004 69.4984 76.3004 69.4984ZM3.70664 6.55469C2.79414 6.55469 2.05664 7.29219 2.05664 8.20469V66.5984C2.05664 67.5109 2.79414 68.2484 3.70664 68.2484H76.3004C77.2129 68.2484 77.9504 67.5109 77.9504 66.5984V8.20469C77.9504 7.29219 77.2129 6.55469 76.3004 6.55469H3.70664Z" fill="#31487A" />
                                     <path d="M71.7574 11.0547H8.24492C7.27152 11.0547 6.48242 11.8438 6.48242 12.8172V51.8484C6.48242 52.8218 7.27152 53.6109 8.24492 53.6109H71.7574C72.7308 53.6109 73.5199 52.8218 73.5199 51.8484V12.8172C73.5199 11.8438 72.7308 11.0547 71.7574 11.0547Z" fill="#F1F8FE" />
@@ -134,8 +134,8 @@ function ServicesPage() {
                         <Link href={`/${language}/services/ophthalmic-equipment-services`} className=" px-4 py-2 rounded-full text-sm bg-blue-100 text-blue-600 
                              group-hover:bg-white group-hover:text-[#31487A] transition-all duration-300 flex items-center gap-2">
                             {t("Read")} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.68 6.75L22.75 12.82L16.68 18.89" stroke="#007CFE" stroke-width="2.124" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M4.125 12.75H20.625" stroke="#007CFE" stroke-width="2.124" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M16.68 6.75L22.75 12.82L16.68 18.89" stroke="#007CFE" strokeWidth="2.124" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M4.125 12.75H20.625" stroke="#007CFE" strokeWidth="2.124" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
 
                         </Link>
@@ -207,8 +207,8 @@ function ServicesPage() {
                         <Link href={`/${language}/services/ophthalmic-equipment-services`} className=" px-4 py-2 rounded-full text-sm bg-blue-100 text-blue-600 
                              group-hover:bg-white group-hover:text-[#31487A] transition-all duration-300 flex items-center gap-2">
                             {t("Read")} <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M16.68 6.75L22.75 12.82L16.68 18.89" stroke="#007CFE" stroke-width="2.124" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M4.125 12.75H20.625" stroke="#007CFE" stroke-width="2.124" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M16.68 6.75L22.75 12.82L16.68 18.89" stroke="#007CFE" strokeWidth="2.124" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
+                                <path d="M4.125 12.75H20.625" stroke="#007CFE" strokeWidth="2.124" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
 
                         </Link>

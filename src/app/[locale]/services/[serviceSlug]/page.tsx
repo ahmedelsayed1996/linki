@@ -60,7 +60,7 @@ function ServiceDetails() {
                         </div>
                     </div>
                     <div className="lg:w-[272px] bg-white rounded-lg overflow-hidden shadow-[0px_0px_8px_1px_#00000012,0px_1px_10px_#0000001a] p-4 flex flex-col gap-4">
-                        <Link href={`/${language}/ophthalmic-equipment-services`} className='flex justify-between items-center bg-[#F1F8FE] hover:bg-[#F1F8FE] p-2 px-4 rounded-lg '>
+                        <Link href={`/${language}/service/ophthalmic-equipment-services`} className='flex justify-between items-center bg-[#F1F8FE] hover:bg-[#F1F8FE] p-2 px-4 rounded-lg '>
                             <p className='text-[#31487A]'>{t('service3title')}</p>
                             <span>
                                 <svg width="8" height="15" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -69,7 +69,7 @@ function ServiceDetails() {
                             </span>
                         </Link>
                         <hr />
-                        <Link href={`/${language}/ophthalmic-equipment-services`} className='flex justify-between items-center p-2 px-4 rounded-lg hover:bg-[#F1F8FE]'>
+                        <Link href={`/${language}/service/ophthalmic-equipment-services`} className='flex justify-between items-center p-2 px-4 rounded-lg hover:bg-[#F1F8FE]'>
                             <p className='text-[#31487A]'>{t('service2title')}</p>
                             <span>
                                 <svg width="8" height="15" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,7 +78,7 @@ function ServiceDetails() {
                             </span>
                         </Link>
                         <hr />
-                        <Link href={`/${language}/ophthalmic-equipment-services`} className='flex justify-between items-center p-2 px-4 rounded-lg hover:bg-[#F1F8FE]'>
+                        <Link href={`/${language}/service/ophthalmic-equipment-services`} className='flex justify-between items-center p-2 px-4 rounded-lg hover:bg-[#F1F8FE]'>
                             <p className='text-[#31487A]'>{t('service1title')}</p>
                             <span>
                                 <svg width="8" height="15" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">

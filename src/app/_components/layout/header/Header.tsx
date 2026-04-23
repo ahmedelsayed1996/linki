@@ -15,21 +15,13 @@ const NAV_LINKS = [
   { key: "Blogs", href: "blogs", icon: <Newspaper size={20} /> },
   { key: "Contact", href: "contact-us", icon: <Phone size={20} /> }
 ];
-const DEPARTMENTS_LINKS = [
-  { name: "Diagnostics", href: "category/Diagnostics" },
-  { name: "Personal Protective", href: "category/PersonalProtective" },
-  { name: "Secondary care", href: "category/SecondaryCare" },
-];
+
 const SERVICES_LINKS = [
   { name: "Laboratory Equipment Services & Calibration", href: "services/ophthalmic-equipment-services", icon: <Microscope /> },
   { name: "Medical Device Maintenance & Calibration", href: "services/ophthalmic-equipment-services", icon: <Wrench /> },
   { name: "Ophthalmology Equipment Services", href: "services/ophthalmic-equipment-services", icon: <Eye /> }
 ];
 
-type Item = {
-  title: string
-  content?: string[]
-}
 type Category = {
   count: number;
   description: string;
@@ -49,130 +41,6 @@ type Category = {
   }]
 }
 
-const dataLeft: Item[] = [
-  {
-    title: "PRIMARY CARE",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "SECONDARY CARE",
-    content: [
-      "Neurology",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "Ophthalmology",
-      "Otorhinolaryngology",
-      "Cardiology",
-      "Pneumology",
-      "Gastroenterology",
-      "Urology",
-      "Gyneco-obstetrics",
-      "Dermatology",
-      "Podiatry",
-      "Oncology",
-      "Orthopedic surgery",
-    ],
-  },
-  {
-    title: "SURGERY UNIT",
-    content: [
-      "Operating room",
-      "Surgical Instruments",
-      "Anesthesia",
-    ],
-  },
-  {
-    title: "DENTAL",
-    content: [
-      "DENTAL PRACTICE",
-      "DENTAL INSTRUMENTS",
-      "DENTAL LABORATORY",
-    ],
-  },
-  {
-    title: "REHABILITATION",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "AESTHETIC MEDICINE, WELLNESS",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "VETERINARY MEDICINE",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "MEDICAL TECHNICAL FACILITIES",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "MEDICAL IMAGING",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "LABORATORY",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "HYGIENE",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "MEDICAL & PHARMACEUTICAL INDUSTRY",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "FURNITURE, LOGISTICS",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-  {
-    title: "MEDICAL CONSUMABLES",
-    content: [
-      "GENERAL PRACTICE",
-      "EMERGENCY MEDICINE, RESUSCITATION",
-      "PEDIATRICS",
-    ],
-  },
-]
 
 const navLinkBase =
   "relative px-2 py-2 text-base rounded-[50px] transition-all duration-300 " +
